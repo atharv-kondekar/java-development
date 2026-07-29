@@ -24,3 +24,9 @@ hs_err_pid*
 replay_pid*
 
 private/
+
+# Eclipse / STS
+.metadata/
+.settings/
+.project
+.classpath  
