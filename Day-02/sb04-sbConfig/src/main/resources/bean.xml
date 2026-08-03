@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+           
+		<bean id="p1" class="com.sunbeam.sb.PersonImpl">
+			<property name="name" value="Atharv"></property>
+			<property name="age" value="21"></property>
+		</bean>
+		
+		<bean id="a1" class="com.sunbeam.sb.AccountImpl">
+			<property name="id" value="101"></property>
+			<property name="type" value="Savings"></property>
+			<property name="balance" value="10000"></property>
+			<property name="acPerson" ref="p1"></property>
+		</bean>
+		
+		<bean id="a2" class="com.sunbeam.sb.AccountImpl">
+			<constructor-arg index="0" value="102"></constructor-arg>
+			<constructor-arg index="1" value="Current"></constructor-arg>
+			<constructor-arg index="2" value="500000"></constructor-arg>
+			<constructor-arg index="3" ref="p1"></constructor-arg>
+		</bean>
+</beans>
