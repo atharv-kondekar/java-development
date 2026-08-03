@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+           
+      <bean id="p1" class="com.example.practice.PersonImpl">
+      		<property name="name" value="Om"></property>
+      		<property name="age" value="21"></property>
+      </bean>
+      
+      <bean id="a1" class="com.example.practice.AccountImpl">
+      		<property name="accId" value="101"></property>
+      		<property name="type" value="Savings"></property>
+      		<property name="balance" value="10000"></property>
+      		<property name="accHolder" ref="p1"></property>
+      </bean>
+      
+      <bean id="a2" class="com.example.practice.AccountImpl">
+      		<property name="accId" value="102"></property>
+      		<property name="type" value="Current"></property>
+      		<property name="balance" value="100000"></property>
+      		<property name="accHolder" ref="p1"></property>
+      </bean>
+</beans>
