@@ -1,0 +1,5 @@
+newacc:
+  id: 404
+  type: Savings
+  balance: 40000
+  acc-holder: p1
