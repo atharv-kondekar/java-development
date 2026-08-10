@@ -13,8 +13,21 @@ public class Sb07AutowiringApplication implements CommandLineRunner{
 	}
 
 	//@Value("#{notificationSender}") we can use this , BUt it is not recommended
-	@Autowired
+	//@Autowired // Field Based Autowiring DI
 	private NotificationSender sender;
+
+	//@Autowired // Setter Based Autowiring DI
+/*	public void setSender(NotificationSender sender) {
+		this.sender = sender;
+	}
+*/
+	// Constructor based Autowiring DI
+	//@Autowired  //single argument constructor is by default @Autowired
+				 //	no need to write the @Autowired
+	public Sb07AutowiringApplication(NotificationSender sender) {
+		super();
+		this.sender = sender;
+	}
 
 	@Override
 	public void run(String... args) throws Exception {
