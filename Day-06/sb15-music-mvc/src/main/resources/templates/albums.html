@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Music</title>
+	</head>
+	<body>
+		<h1>Sunbeam online Music</h1>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Album id</th>
+					<th>Title</th>
+					<th>Thumnail</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="album:${albums}">
+					<td th:text="${album.id}"></td>
+					<td th:text="${album.title}"></td>
+					<td th:text="${album.thumbnail}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br>
+		<form method="post" action="/songManagement">
+			<input type="number" placeholder="Enter Album id" required name="albumId"> &nbsp;
+			<button>Submit</button>
+		</form>
+	</body>
+</html>
