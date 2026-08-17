@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Music</title>
+
+    <link rel="stylesheet" th:href="@{/css/users.css}">
+</head>
+
+<body>
+
+    <h1>Sunbeam Online Music</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Birth Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.addr}"></td>
+                <td th:text="${user.birth}"></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>
