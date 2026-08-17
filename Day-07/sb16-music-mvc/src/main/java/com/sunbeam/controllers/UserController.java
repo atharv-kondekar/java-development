@@ -11,6 +11,8 @@ import com.sunbeam.domain.User;
 import com.sunbeam.models.LoginCredentials;
 import com.sunbeam.services.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 	private UserService userService;
@@ -25,9 +27,11 @@ public class UserController {
 	}
 
 	@RequestMapping("/login")
-	public String authenticateUser(LoginCredentials lc) {
+	public String authenticateUser(LoginCredentials lc,HttpSession session) {
+
 
 		User user = userService.authenticate(lc);
+		session.setAttribute("user", user);
 
 		if (user != null) {
 			if (user.getRole().equals("ROLE_ADMIN")) {

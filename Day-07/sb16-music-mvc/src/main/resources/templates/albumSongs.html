@@ -6,8 +6,9 @@
 		<link rel="stylesheet" th:href="@{/css/albumSongs.css}">
 	</head>
 	<body>
-		<h1>Sunbeam online Music</h1>
-
+		<h1>Sunbeam online Music <br>
+			Hello , <span th:text="${session.user.name}"></span>
+		</h1>
 		<table border="1">
 			<thead>
 				<tr>
