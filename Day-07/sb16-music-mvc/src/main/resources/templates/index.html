@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sunbeam Online Music</title>
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div class="logo">♫</div>
+        <h1>Sunbeam Online Music</h1>
+        <h2>Log in to continue listening</h2>
+        <form action="/login" method="post">
+            <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                required>
+            <input
+                type="password"
+                placeholder="Password"
+                name="passwd"
+                required>
+            <button type="submit">
+                Log in
+            </button>
+        </form>
+
+        <div class="login-footer">
+            Don't have an account?
+            <a href="#">Sign up</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
