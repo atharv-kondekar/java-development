@@ -1,0 +1,21 @@
+package com.sunbeam.practice;
+
+import java.sql.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor @AllArgsConstructor
+@Data
+@ToString(exclude = {"passwd"})
+public class User {
+	private int id;
+	private String email;
+	private String passwd;
+	private String addr;
+	private Date birth;
+	private String role;
+	private String name;
+}
