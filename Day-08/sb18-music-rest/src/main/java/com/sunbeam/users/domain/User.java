@@ -17,11 +17,11 @@ public class User {
 	private int id;
 	private String name;
 	private String email;
-	@JsonIgnore
+	//@JsonIgnore
 	private String passwd;
-
-	@JsonProperty("address")
+	//@JsonProperty("address")
 	private String addr;
+
 	private Date birth;
 	private String role;
 }
