@@ -50,8 +50,8 @@ public class UserService {
 	}
 */
 	public UserResponseDTO saveData(UserRequestDTO uRD) {
-		User user = new User(uRD.getId(),uRD.getName(),uRD.getEmail(),uRD.getPassword(),uRD.getAddress(),
-				uRD.getBirth(),"ROLE_CUTOMER");
+		User user = new User(0,uRD.getName(),uRD.getEmail(),uRD.getPassword(),
+				uRD.getAddress(),uRD.getBirth(),"ROLE_CUTOMER");
 		int Count = userDao.save(user);
 
 		if(Count == 1 ) {
