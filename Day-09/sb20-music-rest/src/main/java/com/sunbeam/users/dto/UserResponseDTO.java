@@ -2,6 +2,8 @@ package com.sunbeam.users.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,7 @@ public class UserResponseDTO {
 		private String name;
 		private String email;
 		private String address;
+		@JsonFormat(pattern = "yyyy-MM-dd")
 		private Date birth;
 		private String role;
 }
