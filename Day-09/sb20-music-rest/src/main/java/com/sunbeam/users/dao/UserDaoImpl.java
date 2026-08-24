@@ -24,6 +24,12 @@ public class UserDaoImpl implements UserDao{
 		String sql = "INSERT INTO users VALUES (default,?,?,?,?,?,?)";
 		int count = jdbcTemplate.update(sql,user.getName(),user.getEmail(),user.getPasswd()
 				,user.getAddr(),user.getBirth(),user.getRole());
+
+		Integer id = jdbcTemplate.queryForObject(
+				"SELECT LAST_INSERT_ID()", Integer.class
+				);
+		user.setId(id);
+
 		return count;
 	}
 
