@@ -22,7 +22,7 @@ public class AlbumDaoImpl implements AlbumDao{
 	 }
 
 	 public int save(Album album) {
-		String sql = "INSERT INTO ablums VALUES (default,?,?)";
+		String sql = "INSERT INTO albums VALUES (default,?,?)";
 		int count = jdbcTemplate.update(sql,album.getTitle(),album.getThumbnail());
 		Integer id = jdbcTemplate.queryForObject(
 				"SELECT LAST_INSERT_ID()" ,
