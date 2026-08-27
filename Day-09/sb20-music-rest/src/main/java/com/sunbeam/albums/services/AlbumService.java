@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sunbeam.albums.dao.AlbumDao;
 import com.sunbeam.albums.domain.Album;
+import com.sunbeam.albums.dto.AlbumRequestDTO;
 import com.sunbeam.albums.dto.AlbumResponseDTO;
 
 @Transactional
@@ -28,5 +29,13 @@ public class AlbumService {
 		return albumList.stream()
 				.map( album -> mapper.map(album, AlbumResponseDTO.class))
 				.toList();
+	}
+
+	public AlbumResponseDTO addAlbum(AlbumRequestDTO albumRequestDTO) {
+		Album album = mapper.map(albumRequestDTO, Album.class);
+		// we can also use this instead of adding it in AppConfig.java
+		//album.setThumbnail( albumRequestDTO.getThumbnail().getOriginalFilename());
+		albumDao.save(album);
+		return mapper.map(album, AlbumResponseDTO.class);
 	}
 }
