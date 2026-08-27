@@ -7,6 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sunbeam.albums.domain.Album;
+import com.sunbeam.albums.dto.AlbumRequestDTO;
+import com.sunbeam.albums.dto.AlbumResponseDTO;
 import com.sunbeam.users.dao.UserDao;
 import com.sunbeam.users.domain.User;
 import com.sunbeam.users.dto.LoginCredentialsDTO;
@@ -92,5 +95,6 @@ public class UserService {
 
 		 throw new InvalidCredentialsException();
 	}
+
 
 }
