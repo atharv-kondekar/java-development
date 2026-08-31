@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Users</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Birth</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+
+    <tbody id="usersTableBody"></tbody>
+</table>
+
+<script>
+    fetch("http://localhost:8081/users")
+        .then(response => response.json())
+        .then(result => {
+            const tbody = document.getElementById("usersTableBody");
+
+            tbody.innerHTML = result.data.map(user => `
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.address}</td>
+                    <td>${new Date(user.birth).toLocaleDateString()}</td>
+                    <td>${user.role}</td>
+                </tr>
+            `).join("");
+        })
+        .catch(error => {
+            console.error("Error fetching users:", error);
+        });
+</script>
+
+</body>
+</html>
