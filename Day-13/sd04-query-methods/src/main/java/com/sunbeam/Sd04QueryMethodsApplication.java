@@ -29,7 +29,7 @@ public class Sd04QueryMethodsApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		System.out.println("Hello ");
 /*
-  		//-------Sort Class---------
+  		//------ findAll(Sort sort) - PaggingAndSortingRepository --------
 		Sort sort1 = Sort.by("price");
 		List<Book> books = bookRepository.findAll(sort1);
 		for (Book book : books)
@@ -55,6 +55,7 @@ public class Sd04QueryMethodsApplication implements CommandLineRunner {
 			System.out.println(book);
 		System.out.println();
 */
+		//------ findAll(Pageable pageable ) - PaggingAndSortingRepository --------
 		 Pageable pageDemo1 = PageRequest.of(0, 4);
 		 Page<Book> page1 = bookRepository.findAll(pageDemo1);
 		 for (Book book : page1.getContent() )
@@ -72,9 +73,52 @@ public class Sd04QueryMethodsApplication implements CommandLineRunner {
 
 			Pageable pageDemo3 = PageRequest.of(i,4,sort5);
 			Page<Book> page3=bookRepository.findAll(pageDemo3);
-
+			System.out.println("Page : "+page3.getNumber()+" out of "+page3.getTotalPages());
 			for (Book book : page3.getContent())
 				System.out.println(book);
 		}
+
+		List<Book> books = bookRepository
+				.findByPriceBetweenAndNameContainingAndAuthorContainingOrderByPriceDesc(100,600,"a","sawant");
+		books.stream()
+			.forEach(book->System.out.println(book));
+		System.out.println();
+
+
+		List<String> books1 = bookRepository.nativeQuery1();
+		books1.stream()
+			.forEach(book -> System.out.println(book));
+		System.out.println();
+
+		List<String> books2 = bookRepository.jpqlQuery1();
+		books2.stream()
+			.forEach( book -> System.out.println(book));
+		System.out.println();
+
+		List<Book> books3 = bookRepository.jpqlQuery2(400, 600);
+		books3.stream()
+			.forEach(book->System.out.println(book));
+		System.out.println();
+
+		// Like uses exact matching , For Containing we have to use %
+		List<Book> books4 = bookRepository.jpqlQuery3(100,600,"%a%","%sawant%");
+		books4.stream()
+			.forEach(book->System.out.println(book));
+		System.out.println();
+
+		List<Book> books5 = bookRepository.jpqlQuery4();
+		books5.stream()
+			.forEach(book->System.out.println(book));
+		System.out.println();
+
+		List<String> books6 = bookRepository.jpqlQuery5();
+		books6.stream()
+			.forEach(book->System.out.println(book));
+		System.out.println();
+
+		List<BookProjection> books7 = bookRepository.findBySubject("Historical");
+		books7.stream()
+			.forEach(book->System.out.println(book.getAuthor() + " "+book.getName()+" "+book.getPrice()));
+		System.out.println();
  	}
 }
