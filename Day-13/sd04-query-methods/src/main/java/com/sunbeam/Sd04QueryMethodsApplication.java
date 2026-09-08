@@ -1,6 +1,8 @@
 package com.sunbeam;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -118,7 +120,37 @@ public class Sd04QueryMethodsApplication implements CommandLineRunner {
 
 		List<BookProjection> books7 = bookRepository.findBySubject("Historical");
 		books7.stream()
-			.forEach(book->System.out.println(book.getAuthor() + " "+book.getName()+" "+book.getPrice()));
+		.forEach(  /*Open Projection*/
+				book -> System.out.println(book.getNameAndAuthor()+" , "+book.getPrice()) );
+/*Closed Projection*///.forEach(book->System.out.println(book.getAuthor() + " "+book.getName()+" "+book.getPrice()));
 		System.out.println();
+
+		List<BookDTO> books8 = bookRepository.findByPriceLessThan(500);
+		books8.stream()
+			.forEach(book -> System.out.println(book));
+		System.out.println();
+
+		List<BookDTO> books9 = bookRepository.jpqlQuery6();
+		books9.stream()
+			.forEach(book->System.out.println(book));
+		System.out.println();
+
+		List<Object[]> books10 = bookRepository.jpqlQuery7();
+		books10.stream()
+			.forEach(book->System.out.println( Arrays.toString(book)));
+		System.out.println();
+
+		 List<BookProjection> books11 = bookRepository.findByPriceLessThan(500,BookProjection.class);
+		 books11.stream()
+		 	.forEach(book->System.out.println(book.getNameAndAuthor() +" , "+book.getPrice()));
+		 System.out.println();
+
+		 List<BookDTO> books12 = bookRepository.findByPriceLessThan(500,BookDTO.class);
+		 books12.stream()
+		 	.forEach(book -> System.out.println(book));
+		 System.out.println();
+
+//		 int update = bookRepository.updateBookPrice("Historical");
+//		 System.out.println(update);
  	}
 }
