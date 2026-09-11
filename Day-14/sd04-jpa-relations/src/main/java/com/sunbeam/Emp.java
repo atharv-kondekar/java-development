@@ -1,5 +1,7 @@
 package com.sunbeam;
 
+import java.util.Optional;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
