@@ -2,6 +2,9 @@ package com.sunbeam;
 
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -28,7 +31,9 @@ public class Dept {
 //	@JoinColumn(name = "deptno")
 //	private List<Emp> empList;
 
-	// Splotion 3: For Lazy-Loading Problem
-	@OneToMany(mappedBy = "dept" /*, fetch = FetchType.EAGER*/ )
+	// Solution 3: For Lazy-Loading Problem
+	@OneToMany(mappedBy = "dept" ,/*, fetch = FetchType.EAGER*/
+		cascade= { CascadeType.REMOVE , CascadeType.MERGE , CascadeType.PERSIST
+			  , CascadeType.DETACH , CascadeType.REFRESH  })
 	private List<Emp> empList;
 }
