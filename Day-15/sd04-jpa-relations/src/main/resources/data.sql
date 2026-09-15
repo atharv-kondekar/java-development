@@ -19,3 +19,20 @@ INSERT INTO addrs (empno, tal, dist) VALUES (2, 'Karad', 'Satara');
 INSERT INTO addrs (empno, tal, dist) VALUES (3, 'Junnar', 'Pune');
 INSERT INTO addrs (empno, tal, dist) VALUES (4, 'Wai', 'Satara');
 INSERT INTO addrs (empno, tal, dist) VALUES (5, 'Karad', 'Satara');
+
+--CREATE TABLE meetings (meetno INT, topic VARCHAR(20), venue VARCHAR(20));
+INSERT INTO meetings (meetno, topic, venue) VALUES (100, 'Scheduling', 'Director Cabin');
+INSERT INTO meetings (meetno, topic, venue) VALUES (200, 'Annual meet', 'Board Room');
+INSERT INTO meetings (meetno, topic, venue) VALUES (300, 'App Design', 'Co-director Cabin');
+
+--CREATE TABLE emp_meetings (meetno INT, empno INT);
+INSERT INTO emp_meetings (meetno, empno) VALUES (100, 3);
+INSERT INTO emp_meetings (meetno, empno) VALUES (100, 4);
+INSERT INTO emp_meetings (meetno, empno) VALUES (200, 1);
+INSERT INTO emp_meetings (meetno, empno) VALUES (200, 2);
+INSERT INTO emp_meetings (meetno, empno) VALUES (200, 3);
+INSERT INTO emp_meetings (meetno, empno) VALUES (200, 4);
+INSERT INTO emp_meetings (meetno, empno) VALUES (200, 5);
+INSERT INTO emp_meetings (meetno, empno) VALUES (300, 1);
+INSERT INTO emp_meetings (meetno, empno) VALUES (300, 2);
+INSERT INTO emp_meetings (meetno, empno) VALUES (300, 4);
