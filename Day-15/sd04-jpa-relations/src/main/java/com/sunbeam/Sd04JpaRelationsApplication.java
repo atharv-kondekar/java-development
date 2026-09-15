@@ -13,15 +13,17 @@ import jakarta.transaction.Transactional;
 @SpringBootApplication
 public class Sd04JpaRelationsApplication implements CommandLineRunner{
 
+	private final MeetingRepository meetingRepository;
 	private final AddressRepository addressRepository;
 	private final DeptRepository deptRepository;
 	private final EmpRepository empRepository;
 
 	//@Autowired
-	Sd04JpaRelationsApplication(EmpRepository empRepository, DeptRepository deptRepository, AddressRepository addressRepository) {
+	Sd04JpaRelationsApplication(EmpRepository empRepository, DeptRepository deptRepository, AddressRepository addressRepository, MeetingRepository meetingRepository) {
 		this.empRepository = empRepository;
 		this.deptRepository = deptRepository;
 		this.addressRepository = addressRepository;
+		this.meetingRepository = meetingRepository;
 	}
 
 	public static void main(String[] args) {
@@ -29,6 +31,7 @@ public class Sd04JpaRelationsApplication implements CommandLineRunner{
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 //		Optional<Address> addOptional=addressRepository.findById(3);
@@ -38,10 +41,33 @@ public class Sd04JpaRelationsApplication implements CommandLineRunner{
 //			System.out.println("\t"+address.getEmp());
 //		}
 
-		Address a = new Address(0,"Karad","Satara", null);
-		Dept d = new Dept(40, null, null);
-		Emp emp = new Emp(6,"Prashant",4,d,a);
-		a.setEmp(emp);
-		empRepository.save(emp);
+//		Address a = new Address(0,"Karad","Satara", null);
+//		Dept d = new Dept(40, null, null);
+//		Emp emp = new Emp(6,"Prashant",4,d,a);
+//		a.setEmp(emp);
+//		empRepository.save(emp);
+
+
+//		Optional<Meeting> om = meetingRepository.findById(300);
+//		if(om.isPresent()) {
+//			Meeting m = om.get();
+//			System.out.println("Found " + m);
+//			for(Emp e : m.getEmpList())
+//				System.out.println("	-> " + e);
+//		}
+//		else
+//			System.out.println("Meeting Not Found.");
+//
+//		System.out.println("-------------------------------------------------------------------");
+
+		Optional<Emp> oe = empRepository.findById(3);
+		if(oe.isPresent()) {
+			Emp e = oe.get();
+			System.out.println("Found " + e);
+			for (Meeting m : e.getMeetingList())
+				System.out.println("	-> " + m);
+		}
+		else
+			System.out.println("Employee Not Found");
 	}
 }
