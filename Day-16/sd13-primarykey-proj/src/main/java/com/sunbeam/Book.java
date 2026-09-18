@@ -38,7 +38,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.TABLE,generator = "tbgen")
 	@Id
 	private int id;
-
+ 
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.UUID)
 //	private String id;
