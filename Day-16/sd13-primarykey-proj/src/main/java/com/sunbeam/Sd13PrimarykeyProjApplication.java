@@ -11,19 +11,20 @@ import jakarta.transaction.Transactional;
 @SpringBootApplication
 public class Sd13PrimarykeyProjApplication implements CommandLineRunner{
 
+	private final BookDao bookDao;
 	private final BookRepo bookRepo;
 
-	Sd13PrimarykeyProjApplication(BookRepo bookRepo) {
+	Sd13PrimarykeyProjApplication(BookRepo bookRepo, BookDao bookDao) {
 		this.bookRepo = bookRepo;
+		this.bookDao = bookDao;
 	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Sd13PrimarykeyProjApplication.class, args);
 	}
 
-	@Override
-	@Transactional
-	public void run(String... args) throws Exception {
+
+	private void initData() {
 		bookRepo.save(new Book(0, "Effective Java", "Joshua Bloch", "Java", 550.0));
 		bookRepo.save(new Book(0, "Head First Java", "Kathy Sierra", "Java", 480.0));
 		bookRepo.save(new Book(0, "Clean Code", "Robert C. Martin", "Java", 620.0));
@@ -39,15 +40,33 @@ public class Sd13PrimarykeyProjApplication implements CommandLineRunner{
 		bookRepo.save(new Book(0, "Fluent Python", "Luciano Ramalho", "Python", 850.0));
 		bookRepo.save(new Book(0, "Introduction to Algorithms", "Thomas H. Cormen", "Algorithms", 950.0));
 
-
 		// for UUID @Id generation
 //		bookRepo.save(new Book(null, "Effective Java", "Joshua Bloch", "Java", 550.0));
 //		bookRepo.save(new Book(null, "Head First Java", "Kathy Sierra", "Java", 480.0));
 //		bookRepo.save(new Book(null, "Clean Code", "Robert C. Martin", "Java", 620.0));
+	}
 
-		System.out.println("---------------- All Books ----------------");
-		List<Book> books = bookRepo.findAll();
-		books.stream()
-			.forEach(book -> System.out.println(book));
+	@Override
+	//@Transactional
+	public void run(String... args) throws Exception {
+		initData();
+
+//		System.out.println("---------------- All Books ----------------");
+//		List<Book> books = bookRepo.findAll();
+//		books.stream()
+//			.forEach(book -> System.out.println(book));
+//
+//		Double price = bookDao.getBookPrice(1);
+//		System.out.println(price);
+
+		List<BookProjection> bookProjections = bookRepo.findBySubject("Java");
+		bookProjections.stream()
+			.forEach(bookProjection -> System.out.println(bookProjection.getId() +  " " + bookProjection.getPrice()+
+				"-----> "+bookProjection.getNameAuthor() + ", \n\tIncluding Tax : "+bookProjection.getPriceAndTax(0.05)
+			));
+
+		List<BookProjection>list = bookRepo.getAllBooks();
+		list.stream()
+			.forEach( book -> System.out.println(book.getNameAuthor() + "     \n           ---->    " + book.getPriceAndVariableTax()));
 	}
 }
