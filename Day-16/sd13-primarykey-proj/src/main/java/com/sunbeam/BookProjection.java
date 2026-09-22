@@ -6,7 +6,7 @@ public interface BookProjection {
 	int getId();
 	double getPrice();
 
-	@Value("#{target.name + ' by '+ target.author }")
+	@Value("#{target.name + ' by -> '+ target.author }")
 	String getNameAuthor();
 
 	@Value("#{ (target.price * args[0]) + target.price }")

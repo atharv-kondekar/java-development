@@ -65,6 +65,8 @@ public class Sd13PrimarykeyProjApplication implements CommandLineRunner{
 				"-----> "+bookProjection.getNameAuthor() + ", \n\tIncluding Tax : "+bookProjection.getPriceAndTax(0.05)
 			));
 
+		System.out.println("------------------------------------------------------------------------");
+
 		List<BookProjection>list = bookRepo.getAllBooks();
 		list.stream()
 			.forEach( book -> System.out.println(book.getNameAuthor() + "     \n           ---->    " + book.getPriceAndVariableTax()));
