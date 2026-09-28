@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info </title>
+</head>
+<body>
+
+	<h3>Find User Information</h3>
+	<p>User id : </p>
+	<input type="number" name="id" id="userid" placeholder="Enter user id">
+	<button onclick="getUserDetails()" >Get Details</button>
+
+	<br>
+	<div>
+		<pre id="result">
+
+		</pre>
+	</div>
+
+	<script>
+		async function getUserDetails(){
+			const userId= document.getElementById("userid").value;
+			const query = `
+			query User {
+			    user(id: "${userId}") {
+			        name
+			        address
+			        email
+			        mobile
+			        orders {
+			            total
+			            items {
+			                name
+			                quantity
+			            }
+			        }
+			    }
+			}
+			`
+			const response = await fetch("http://localhost:8081/graphql" ,{
+				method : "POST",
+				headers:{
+					"Content-Type": "application/json"
+				},
+				body:JSON.stringify( {
+					query:query
+				})
+			});
+
+			const result = await response.json();
+			document.getElementById("result").textContent = JSON.stringify(
+				result , null,2
+			);
+		}
+
+	</script>
+
+</body>
+</html>
