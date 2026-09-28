@@ -1,7 +1,14 @@
 
+type OrderItem{
+	id: ID!
+	name: String!
+	quantity: Int!
+}
+
 type Order{
 	id: ID!
 	total: Float!
+	items: [OrderItem!]!
 }
 
 type User{
@@ -15,4 +22,5 @@ type User{
 
 type Query{
 	user( id: ID! ) : User
+	users: [User!]!
 }
