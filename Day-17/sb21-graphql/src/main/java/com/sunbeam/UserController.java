@@ -24,6 +24,11 @@ public class UserController {
 		return user;
 	}
 
+	@QueryMapping(name ="users")
+	List<User> findAllUsers(){
+		return userService.fidnAll();
+	}
+
 	@SchemaMapping
 	List<Order> orders(User user){
 		return orderService.findById(user.getId());
