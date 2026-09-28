@@ -36,4 +36,8 @@ public class UserService {
 		}
 		return null;
 	}
+
+	public List<User> fidnAll() {
+		return userList;
+	}
 }
