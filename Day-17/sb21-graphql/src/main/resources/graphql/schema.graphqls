@@ -24,3 +24,14 @@ type Query{
 	user( id: ID! ) : User
 	users: [User!]!
 }
+
+input UserInput{
+	name:String!
+	address: String!
+	email: String!
+	mobile: String!
+}
+
+type Mutation{
+	createUser(input: UserInput!) : User
+}
