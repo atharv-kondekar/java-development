@@ -40,4 +40,18 @@ public class UserService {
 	public List<User> fidnAll() {
 		return userList;
 	}
+
+	public User addUser(UserInput userInput) {
+
+		int lastId=0;
+		if(userList.size() > 0 ) {
+			User lastUser = userList.get( userList.size()-1);
+			lastId = lastUser.getId();
+		}
+
+		userList.add( new User(lastId+1,userInput.getName(),userInput.getEmail(),
+				userInput.getAddress(), userInput.getMobile()));
+
+		return userList.get( userList.size()-1);
+	}
 }
