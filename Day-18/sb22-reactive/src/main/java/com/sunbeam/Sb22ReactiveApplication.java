@@ -1,6 +1,9 @@
 package com.sunbeam;
 
+import java.io.Flushable;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.stream.Stream;
 
@@ -43,7 +46,35 @@ public class Sb22ReactiveApplication implements CommandLineRunner{
 //		demo14(); //.delayElements() with .subscribe()
 //		demo15(); //.delayElements() with .blockLast()
 //		demo16(); //.delayElements() , .blockLast() , flatMap()
-		demo17(); //.delayElements() , .blockLast() , concatMap()
+//		demo17(); //.delayElements() , .blockLast() , concatMap()
+//		demo18(); // mono & .flatMap() returns -> collection
+//		demo19(); // mono & .flatMapMany() returns -> Flux
+		demo20(); // merging the two flux
+	}
+
+	private void demo20() {
+		Flux<String> flux1 = Flux.just("A","B","C","D").delayElements(Duration.ofMillis(100));
+		Flux<String> flux2 = Flux.just("X","Y","Z").delayElements( Duration.ofMillis(220));
+
+		Flux<String> resultFlux = Flux
+									//.merge(flux1,flux2) // A B X C D Y Z
+									//.mergeSequential(flux2,flux1) // A B C D X Y Z
+									//.mergeSequential(flux1,flux2) // X Y Z A B C D
+									.zip(flux1, flux2,(f1,f2)-> f1+f2) // AX BY CZ
+									.doOnNext(s -> System.out.println(s));
+		resultFlux.blockLast();
+	}
+
+	private void demo19() {
+		Mono<String> mono = Mono.just("Nilesh");
+		Flux<String> fluxResult = mono.flatMapMany( s -> Flux.just( s.split("")) );
+		fluxResult.subscribe(s -> System.out.println(s));
+	}
+
+	private void demo18() {
+		Mono<String> mono = Mono.just("Nilesh");
+		Mono<List<String>> resultMono = mono.flatMap( s -> Mono.just( Arrays.asList( s.split(""))));
+		resultMono.subscribe( list -> System.out.println(list));
 	}
 
 	private void demo17() {
