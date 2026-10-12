@@ -1,0 +1,13 @@
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (11,'EXPLORING C','KANETKAR','C',123.4);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (12,'POINTERS IN C','KANETKAR','C',370);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (13,'ANSI C PROGRAMMING','BALGURUSWAMI','C',330);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (14,'ANSI C PROGRAMMING','RITCHIE','C',140);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (21,'C++ COMPLETE REFERENCE','SCHILDT','CPP',410);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (22,'C++ PRIMER','LIPPMAN','CPP',620);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (23,'C++ PROGRAMMING LANGUAGE','STROUSTRUP','CPP',540);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (31,'JAVA COMPLETE REFERENCE','SCHILDT','JAVA',520);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (32,'CORE JAVA VOLUME I','HOARSMAN','JAVA',575);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (33,'JAVA PROGRAMMING LANGUAGE','JAMES','JAVA',450);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (41,'OPERATING SYSTEM CONCEPTS','GALVIN','OS',567.3);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (42,'DESIGN OF UNIX OS','BACH','OS',421);
+INSERT INTO rebooks(id, name, author, subject, price) VALUES (43,'UNIX INTERNALS','VAHALIA','OS',352);
