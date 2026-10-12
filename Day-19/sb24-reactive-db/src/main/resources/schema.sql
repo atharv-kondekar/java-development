@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS rebooks;
+
+CREATE TABLE rebooks(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(40),
+	author VARCHAR(50),
+	subject VARCHAR(30),
+	price DOUBLE
+);
