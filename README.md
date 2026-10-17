@@ -179,26 +179,106 @@ Requirements depend on the individual module.
 
 ```text
 java-development/
+│
 ├── Day-00-Prerequisites/
+│   ├── Annotations/
+│   ├── JDBC/
+│   ├── Java-8-Interfaces/
+│   ├── Middleware/
+│   ├── Proxy/
+│   └── Reflection/
+│
 ├── Day-01/
+│   ├── spring01-xmlconfig/
+│   ├── spring02-anno-config/
+│   └── springboot01-hello-world/
+│
 ├── Day-02/
+│   ├── Deployment-Overview/
+│   ├── SpringBoot-Startup/
+│   ├── sb03-hello-console-based/
+│   ├── sb04-jbconfig/
+│   └── sb05-spring-bean-lifecycle/
+│
 ├── Day-03/
+│   ├── sb06-stereotype-annotations/
+│   ├── sb07-autowiring/
+│   └── sb07-autowiring-assignment/
+│
 ├── Day-04/
+│   ├── sb08-conditional-config/
+│   └── sb09-profiles-in-spring/
+│
 ├── Day-05/
+│   ├── sb014-jdbc-demo/
+│   └── sb014-jdbc-demo-assignment/
+│
 ├── Day-06/
+│   ├── sb15-music-mvc/
+│   └── sb15-spring-mvc/
+│
 ├── Day-07/
+│   ├── sb16-music-mvc/
+│   └── sb17-rest-demo/
+│
 ├── Day-08/
+│   ├── sb18-book-rest/
+│   └── sb18-music-rest/
+│
 ├── Day-09/
+│   ├── sb20-music-rest/
+│   └── JavaScript-Files/
+│
 ├── Day-10/
+│   ├── sb20-music-rest/
+│   ├── sb20-music-rest-client-web/
+│   ├── sb21-bookrest-client/
+│   └── sb21-bookrest/
+│
 ├── Day-11/
+│   ├── security-01-mvc/
+│   ├── security-02-mvc/
+│   └── security-03-rest/
+│
 ├── Day-12/
+│   ├── sb20-music-rest/
+│   └── sd01-demo-spring-data-jpa/
+│
 ├── Day-13/
+│   ├── sd02-database-first-approach/
+│   ├── sd03-code-first-approach/
+│   └── sd04-query-methods/
+│
 ├── Day-14/
+│   └── sd04-jpa-relations/
+│
 ├── Day-15/
+│   ├── sd04-jpa-relations/
+│   ├── sd05-entity-lifecycle/
+│   ├── sd06-jpa-inheritance/
+│   ├── sd07-jpa-inheritance/
+│   ├── sd08-jpa-inheritance/
+│   ├── sd09-jpa-inheritance/
+│   ├── sd10-embeddable/
+│   └── sd11-composite-primarykey/
+│
 ├── Day-16/
+│   ├── sd12-self-ref/
+│   ├── sd13-primarykey-proj/
+│   └── sd14-findAll-example-querydsl/
+│
 ├── Day-17/
+│   ├── sb20-music-rest/
+│   ├── sb21-graphql/
+│   └── graphql.png
+│
 ├── Day-18/
+│   ├── sb22-reactive/
+│   ├── sb23-reactive-rest/
+│   └── reactive-programming.png
+│
 └── Day-19/
+    └── sb24-reactive-db/
 ```
 
 The day-wise structure makes it easier to navigate individual exercises and follow the progression of the training.
