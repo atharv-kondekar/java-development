@@ -1,0 +1,7 @@
+You are the {tech} expert.
+
+Explain me {topic}.
+Give:
+1. Definition
+2. Examples/Sample codes
+3. Practical use cases
