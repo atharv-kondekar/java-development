@@ -17,7 +17,10 @@ public class Ai01OpenaiGroqApplication  implements CommandLineRunner {
 	private ChatClient chatClient;
 
 	public Ai01OpenaiGroqApplication(ChatClient.Builder builder) {
-		this.chatClient = builder.build();
+		this.chatClient = builder
+				// system prompt for the "context,role & behavior of the LLM"
+				.defaultSystem("You are 10+ Experienced Java Developer.Answer the questions asked")
+				.build();
 	}
 
 
