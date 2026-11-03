@@ -4,7 +4,11 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -19,16 +23,37 @@ import jakarta.annotation.PreDestroy;
 public class AiService {
 
 	private SimpleVectorStore vectorStore;
+	private ChatClient chatClient;
 
-	public AiService(EmbeddingModel embeddingModel) {
+	public AiService(EmbeddingModel embeddingModel , ChatClient.Builder builder) {
 
 		this.vectorStore = SimpleVectorStore
 							.builder(embeddingModel)
 							.build();
+
+
+		SearchRequest req = SearchRequest.builder()
+					.similarityThreshold(0.5)
+					.topK(4)
+					.build();
+
+		QuestionAnswerAdvisor qaAdvisor= QuestionAnswerAdvisor.builder(vectorStore)
+											.searchRequest(req)
+											.order(2)
+											.build();
+		SimpleLoggerAdvisor loggerAdvisor = SimpleLoggerAdvisor.builder()
+								.order(3)
+								.build();
+
+		this.chatClient = builder
+				.defaultSystem("""
+						You are the helpful assistant.
+						Answer the Question based on supplied Context
+				""")
+				.defaultAdvisors(qaAdvisor,loggerAdvisor)
+				.build();
+
 	}
-
-
-
 
 // ------------------ Vector Store Management -------------------
 	public void initStore() {
@@ -67,7 +92,7 @@ public class AiService {
 		}
 	}
 
-//Execute this method automatically when the spring bean is created
+// Execute this method automatically when the spring bean is created
 	@PostConstruct
 	public void loadVectorStore() {
 		//create File object representing the saved Vector DB json file
@@ -106,5 +131,45 @@ public class AiService {
 		List<Document> result = vectorStore.similaritySearch(request);
 
 		return result;
+	}
+
+// Chat with LLM - Beginner Level implementation(Not Standard Implementation in Spring AI)
+	public String rawChat(String question) {
+
+	    System.out.println("1. Starting Retrieval...");
+	    // Retrieval Stage
+	    List<Document> simDocs = search(question, 5, 0.5);
+
+	    System.out.println("2. Documents Retrieved: " + simDocs.size());
+	    String context = simDocs.stream()
+	            .map(doc -> "* " + doc.getText())
+	            .collect(Collectors.joining("\n"));
+
+	    System.out.println("3. Context Prepared");
+	    // Augmentation Stage
+	    String userPrompt = String.format(
+	    	    "User Question: %s\n\nContext:\n%s\n",
+	    	    question, context
+	    	);
+
+	    System.out.println("4. Sending Request to Gemini...");
+	    // Generation Stage
+	    String response = chatClient.prompt()
+	            .user(userPrompt)
+	            .call()
+	            .content();
+
+	    System.out.println("5. Gemini Response Received");
+
+	    return response;
+	}
+
+	public String chat(String question) {
+		String response	= chatClient.prompt()
+					.user(question)
+					.call()
+					.content();
+
+		return response;
 	}
 }
