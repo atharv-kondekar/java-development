@@ -27,13 +27,18 @@ public class Ai08SimpleRagApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		//aiService.initStore();
 
-		String question = "Water boils at how much tempeature ?";
-		//List<Document> documents = aiService.search(question, 5, 0.5);
-		List<Document> documents = aiService.search(question, 5, 0.6);
+//		String question = "Water boils at how much tempeature ?";
+//		//List<Document> documents = aiService.search(question, 5, 0.5);
+//		List<Document> documents = aiService.search(question, 5, 0.6);
 
-		System.out.println("Documents Retrived : "+documents.size());
-		for (Document document : documents) {
-			System.out.println(document.getText());
-		}
+//		System.out.println("Documents Retrived : "+documents.size());
+//		for (Document document : documents) {
+//			System.out.println(document.getText());
+//		}
+//
+//		System.out.println("Rag is Created ....................");
+//		String question = "Which seven wonders of the world you know ?";
+//		String ans =  aiService.rawChat(question);
+//		System.out.println("Answer : "+ans);
 	}
 }
